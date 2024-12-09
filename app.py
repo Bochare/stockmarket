@@ -8,7 +8,7 @@ from sklearn.preprocessing import MinMaxScaler
 from datetime import datetime
 import altair as alt
 # Load the pre-trained stock prediction model
-model = load_model(r'E:\Practice of program\python\Stock_Market_Prediction_ML\stockmarket\Stock Predictions Model1.keras')
+model = load_model(r'https://github.com/Bochare/stockmarket/blob/8d9ee7f745522983c946d9a32850a2d40ce06020/Stock%20Predictions%20Model1.keras')
 
 # Set up the Streamlit app header
 st.set_page_config(
