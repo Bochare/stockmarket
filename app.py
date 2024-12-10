@@ -23,15 +23,14 @@ def download_model():
             for chunk in response.iter_content(chunk_size=1024):
                 if chunk:
                     file.write(chunk)
-        st.success("Model downloaded successfully!")
-
+       
 # Download the model
 download_model()
 
 # Load the model
 try:
     model = load_model(MODEL_PATH)
-    st.success("Model loaded successfully!")
+   
 except Exception as e:
     st.error(f"Error loading model: {e}")
 # Set up the Streamlit app header
