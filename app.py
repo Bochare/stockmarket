@@ -13,6 +13,12 @@ import os
 # Define the URL of the model file on GitHub
 MODEL_URL = "https://github.com/Bochare/stockmarket/raw/main/Stock%20Predictions%20Model1.keras"
 MODEL_PATH = "Stock_Predictions_Model1.keras"
+st.set_page_config(
+    page_title="Stock Price Prediction",
+    page_icon="📈",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
 def download_model():
     """Download the model file if it doesn't already exist."""
@@ -34,12 +40,6 @@ try:
 except Exception as e:
     st.error(f"Error loading model: {e}")
 # Set up the Streamlit app header
-st.set_page_config(
-    page_title="Stock Price Prediction",
-    page_icon="📈",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
 
 # Initialize session state for view selection
 if "view" not in st.session_state:
