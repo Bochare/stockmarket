@@ -7,9 +7,33 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 from datetime import datetime
 import altair as alt
-# Load the pre-trained stock prediction model
-model = load_model(r'https://github.com/Bochare/stockmarket/blob/8d9ee7f745522983c946d9a32850a2d40ce06020/Stock%20Predictions%20Model1.keras')
+import requests
+import os
 
+# Define the URL of the model file on GitHub
+MODEL_URL = "https://github.com/Bochare/stockmarket/raw/main/Stock%20Predictions%20Model1.keras"
+MODEL_PATH = "Stock_Predictions_Model1.keras"
+
+def download_model():
+    """Download the model file if it doesn't already exist."""
+    if not os.path.exists(MODEL_PATH):
+        st.info("Downloading model file...")
+        response = requests.get(MODEL_URL, stream=True)
+        with open(MODEL_PATH, 'wb') as file:
+            for chunk in response.iter_content(chunk_size=1024):
+                if chunk:
+                    file.write(chunk)
+        st.success("Model downloaded successfully!")
+
+# Download the model
+download_model()
+
+# Load the model
+try:
+    model = load_model(MODEL_PATH)
+    st.success("Model loaded successfully!")
+except Exception as e:
+    st.error(f"Error loading model: {e}")
 # Set up the Streamlit app header
 st.set_page_config(
     page_title="Stock Price Prediction",
